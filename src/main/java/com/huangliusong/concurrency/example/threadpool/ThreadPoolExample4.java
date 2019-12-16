@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class ThreadPoolExample4 {
-    HashMap
+
     public static void main(String[] args) {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(4);
         scheduledExecutorService.schedule(new Runnable() {
