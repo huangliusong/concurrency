@@ -21,9 +21,11 @@ public class CountDownLatchExample1 {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
-                    semaphore.acquire();//获取一个许可
-                    test(threadNum);
-                    semaphore.release();//释放一个许可
+                    if (semaphore.tryAcquire()){
+                        test(threadNum);
+                        semaphore.release();//释放一个许可
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -38,6 +40,6 @@ public class CountDownLatchExample1 {
     private static void test(int threadNum) throws Exception {
         Thread.sleep(100);
         log.info("{}", threadNum);
-        Thread.sleep(100);
+        Thread.sleep(1000);
     }
 }
